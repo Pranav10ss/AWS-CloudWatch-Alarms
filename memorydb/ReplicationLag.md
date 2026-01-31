@@ -23,8 +23,7 @@ This architecture offers strong consistency across failovers & ensures that the 
 `ReplicationLag` metric for MemoryDB represents how far behind (in seconds) the replica node is in applying changes from the primary node.
 It is important to monitor `ReplicationLag` metric for MemoryDB because, high lag means the replica is behind in applying the transaction log-stream to its in-memory dataset. 
 If the replica has to catch-up a lot during failover, failover takes longer & applications encounter longer downtime. 
-In our case, we are using MemoryDB primarily for job-queues, and job-queues can only be enqueued once and cannot be rescheduled.
-High replication lag increases failover time, delaying job-queue processing until the new primary is ready. 
+High replication lag increases failover time, delaying processing until the new primary is ready. 
 
 ## Alarm configuration
 The `ReplicationLag` metric is emitted by the replica node, and the lag on the primary node will be always zero. 
